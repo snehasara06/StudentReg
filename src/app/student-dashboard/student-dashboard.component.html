@@ -1,0 +1,92 @@
+<nav class="navbar navbar-light" style="background-color:#e3f2fd">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="color:darkturquoise;">Angular CRUD-Student Database </a>
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> -->
+      <!-- </button>       -->
+        <div class="d-flex">        
+          <button class="btn btn-info" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Student</button>
+        </div>
+      </div>
+  </nav>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Email ID</th>
+        <th>Mobile No</th>
+        <th>Department</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let student of allstudent">
+        <td>{{student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.mobile}}</td>
+        <td>{{student.dept}}</td>
+        <td>{{student.year}}</td>
+
+
+        <td>
+            <input type="button" value="Edit" (click)="EditStudent(student)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info me-2"/>
+            <input type="button" value="Delete" (click)="DeleteStudent(student)" class="btn btn-danger"/>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+
+
+
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-6" [formGroup]="formValue">
+                <div class="col-md-12">
+                    <label for="inputName" class="form-label">Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="inputName">
+                  </div>
+                  <div class="col-md-12">
+                    <label for="inputEmail" class="form-label">Email ID</label>
+                    <input type="email" formControlName="email" class="form-control" id="inputEmail">
+                  </div>
+                <div class="col-md-12">
+                  <label for="inputMobile" class="form-label">Mobile No</label>
+                  <input type="tel" formControlName="mobile" class="form-control" id="inputMobile">
+                </div>
+                <div class="col-md-12">
+                  <label for="inputDept" class="form-label">Department</label>
+                  <input type="text" formControlName="dept" class="form-control" id="inputDept">
+                </div>
+                <div class="col-12">
+                  <label for="inputYear" class="form-label">Year</label>
+                  <input type="text" class="form-control" formControlName="year" id="inputYear" placeholder="Year">
+                </div>
+                <!-- <div class="col-12">
+                  <label for="inputCity" class="form-label">City</label>
+                  <input type="text" class="form-control" id="inputAddress2" formControlName="city" placeholder="Enter your city name">
+                </div> -->
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+          <button *ngIf="btnSaveShow" type="button" class="btn btn-info" (click)="AddStudent()" >Register</button>
+          <button *ngIf="btnUpdateShow" type="button" class="btn btn-info" (click)="UpdateStudent()" >Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
